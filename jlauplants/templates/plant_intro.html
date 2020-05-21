@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>编辑植物--{{plant.1}}</h2>
+<form action="" method="POST">
+  {% csrf_token %}
+    <div class="form-group">
+        <label>学名：</label>
+        <textarea name="sciname" id="sciname" class="form-control" rows="1">{{plant.2}}</textarea>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label >科：</label>
+          <textarea name="families" id="families" class="form-control"rows="1">{{plant.3}}</textarea>
+        </div>
+        <div class="form-group col-md-6">
+          <label >属：</label>
+          <textarea name="genera" id="genera" class="form-control"rows="1">{{plant.4}}</textarea>
+        </div>
+      </div>
+    <div class="form-group">
+        <label>概述：</label>
+        <textarea name="gaishu" id="gaishu" class="form-control" rows="7">{{intro.1}}</textarea>
+    </div>
+    <div class="form-group">
+        <label >形态特征：</label>
+        <textarea name="xingtai" id="xingtai" class="form-control" rows="7">{{intro.2}}</textarea>
+    </div>
+    <div class="form-group">
+        <label >生长环境：</label>
+        <textarea name="huanjing" id="huanjing" class="form-control" rows="5">{{intro.3}}</textarea>
+    </div>
+    <input type="hidden" name="plant_id" value="{{plant.0}}">
+    <button type="submit" class="btn btn-primary">提交</button>
+</form>
+{% endblock content %}

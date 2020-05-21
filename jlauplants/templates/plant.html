@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    {% block map_detail %}
+      
+    {% endblock map_detail %}
+
+    <div class="row">
+        {% for plant in plants  %}
+        <div class="col-sm">
+            <div class="card border-primary mb-3" style="width: 233px;">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <h4 class="card-title">{{plant.1}}</h4>
+                    </div>
+                    <img class="card-img-top" src="{% static plant.1 %}" alt="没找到{{plant.1}}" width="233px"height="180px">
+                    <div class="card-body">
+                        <h4 class="card-text">{{plant.3}}</h4>
+                        <h5 class="card-text">{{plant.4}}</h5>
+                        <a href="{% url 'plant_detail' plant_id=plant.0 %}" class="btn btn-primary ">详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

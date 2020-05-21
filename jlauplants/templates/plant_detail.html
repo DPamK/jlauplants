@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card border-primary mb-3" style="width: 233px;">
+            <div class="card text-center">
+                <div class="card-header">
+                <h4 class="card-title">{{plant.1}}</h4>
+            </div>
+            <img class="card-img-top" src="{% static plant.1 %}" alt="没找到{{plant.1}}" width="233px"height="180px">
+                <div class="card-body">
+                    <h6 class="card-text">{{plant.3}}  {{plant.4}}</h6>
+                    <h5 class="card-text">{{plant.2}}</h5>
+                    <div class="row">
+                        <div class="col-sm-6">
+                        <a href="{% url 'introduce' plant_id=plant.0 %}" class="btn btn-primary">编辑</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <form action="{% url 'delete' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="plant_id" value="{{plant.0}}">
+                                <button type="submit" class="btn btn-danger">delete</button>
+                            </form>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="card text-center">
+            <div class="card-header">
+                <h3>出现地区：
+                    {% for i in map %}
+                        <a href="{% url 'map_detail' map_id=i.0 %}" class="btn btn-info">{{i.1}}</a>
+                    {% endfor %}
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_map">
+                        <h6>+</h6>
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="add_map" tabindex="-1" role="dialog" aria-labelledby="add_mapLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form action="{% url 'change_map' %}" method="post">
+                                {% csrf_token %}
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">修改标签</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="FormControlSelect1">修改方式</label>
+                                                <select class="form-control" id="FormControlSelect1" name="way">
+                                                  <option value="add">添加标签</option>
+                                                  <option value="delete">删除标签</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FormControlSelect2">选择区位</label>
+                                                <select class="form-control" id="FormControlSelect2" name="map_id">
+                                                  {% for m in mapall %}
+                                                    <option value="{{m.0}}">{{m.1}}</option>
+                                                  {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="hidden" name="plant_id" value="{{plant.0}}">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">保存</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text">概述：{{intro.1}}</p>
+                <br>
+                <p class="card-text">形态特征：{{intro.2}}</p>
+                <br>
+                <p class="card-text">生长环境：{{intro.3}}</p>
+            
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}    

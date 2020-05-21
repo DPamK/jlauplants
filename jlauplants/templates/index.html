@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div id="index" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+        <li data-target="#index" data-slide-to="0" class="active"></li>
+        <li data-target="#index" data-slide-to="1"></li>
+        <li data-target="#index" data-slide-to="2"></li>
+        </ul>
+        <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+            <img src="{% static "1.jpg" %}" alt="{% static "1.jpg" %}" class="img-fluid" width="1200">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>欢迎来到JALU校园植物库</h2>
+              </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static "2.jpg" %}" alt="{% static "2.jpg" %}" class="img-fluid" width="1200">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>希望大家一起完善这个网站</h2>
+              </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static "3.jpg" %}" alt="{% static "3.jpg" %}" class="img-fluid" width="1200">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>明德    崇智    厚朴    笃行</h2>
+                
+              </div>
+        </div>
+        </div>
+        <a class="carousel-control-prev" href="#index" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#index" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+</div>
+
+{% endblock content %}

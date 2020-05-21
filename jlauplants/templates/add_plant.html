@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>上传植物</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">名称:</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+        <div class="form-group">
+            <label for="sciname">学名:</label>
+            <input type="text" class="form-control" name="sciname">
+        </div>
+        <div class="form-group">
+            <label for="families">科：</label>
+            <input type="text" class="form-control" name="families">
+        </div>
+        <div class="form-group">
+            <label for="genera">属:</label>
+            <input type="text" class="form-control" name="genera">
+        </div>
+        <!-- <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile" name="img_file">
+            <label class="custom-file-label" for="customFile">选择植物图片</label>
+        </div> -->
+        <div class="form-group">
+            <label for="inputState">所在位置：</label>
+            <select id="inputState" class="form-control" name="map_id" >
+              {% for map in maps %}
+                <option value="{{map.0}}">{{map.1}}</option>
+              {% endfor %}
+            </select>
+            <br>
+        <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+
+      
+   
+{% endblock content %}
